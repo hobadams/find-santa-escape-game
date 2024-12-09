@@ -1,6 +1,7 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import configReducer from "./configSlice";
 import bagReducer from "./bagSlice";
+import stepReducer from "./stepSlice";
 import {
   loadStateFromLocalStorage,
   saveStateToLocalStorage,
@@ -12,6 +13,7 @@ export const RESET_GAME_ACTION = "RESET_GAME";
 const appReducer = combineReducers({
   config: configReducer,
   bag: bagReducer,
+  step: stepReducer,
 });
 
 // Create a root reducer that listens for the RESET_STATE action

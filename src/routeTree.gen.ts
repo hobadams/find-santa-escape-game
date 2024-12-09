@@ -14,11 +14,13 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as GameImport } from './routes/game'
+import { Route as GameStepStepIndexImport } from './routes/game/step/$step/index'
 
 // Create Virtual Routes
 
 const IndexLazyImport = createFileRoute('/')()
 const GameIndexLazyImport = createFileRoute('/game/')()
+const GameIntroIndexLazyImport = createFileRoute('/game/intro/')()
 
 // Create/Update Routes
 
@@ -39,6 +41,20 @@ const GameIndexLazyRoute = GameIndexLazyImport.update({
   path: '/',
   getParentRoute: () => GameRoute,
 } as any).lazy(() => import('./routes/game/index.lazy').then((d) => d.Route))
+
+const GameIntroIndexLazyRoute = GameIntroIndexLazyImport.update({
+  id: '/intro/',
+  path: '/intro/',
+  getParentRoute: () => GameRoute,
+} as any).lazy(() =>
+  import('./routes/game/intro/index.lazy').then((d) => d.Route),
+)
+
+const GameStepStepIndexRoute = GameStepStepIndexImport.update({
+  id: '/step/$step/',
+  path: '/step/$step/',
+  getParentRoute: () => GameRoute,
+} as any)
 
 // Populate the FileRoutesByPath interface
 
@@ -65,6 +81,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GameIndexLazyImport
       parentRoute: typeof GameImport
     }
+    '/game/intro/': {
+      id: '/game/intro/'
+      path: '/intro'
+      fullPath: '/game/intro'
+      preLoaderRoute: typeof GameIntroIndexLazyImport
+      parentRoute: typeof GameImport
+    }
+    '/game/step/$step/': {
+      id: '/game/step/$step/'
+      path: '/step/$step'
+      fullPath: '/game/step/$step'
+      preLoaderRoute: typeof GameStepStepIndexImport
+      parentRoute: typeof GameImport
+    }
   }
 }
 
@@ -72,10 +102,14 @@ declare module '@tanstack/react-router' {
 
 interface GameRouteChildren {
   GameIndexLazyRoute: typeof GameIndexLazyRoute
+  GameIntroIndexLazyRoute: typeof GameIntroIndexLazyRoute
+  GameStepStepIndexRoute: typeof GameStepStepIndexRoute
 }
 
 const GameRouteChildren: GameRouteChildren = {
   GameIndexLazyRoute: GameIndexLazyRoute,
+  GameIntroIndexLazyRoute: GameIntroIndexLazyRoute,
+  GameStepStepIndexRoute: GameStepStepIndexRoute,
 }
 
 const GameRouteWithChildren = GameRoute._addFileChildren(GameRouteChildren)
@@ -84,11 +118,15 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
   '/game': typeof GameRouteWithChildren
   '/game/': typeof GameIndexLazyRoute
+  '/game/intro': typeof GameIntroIndexLazyRoute
+  '/game/step/$step': typeof GameStepStepIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
   '/game': typeof GameIndexLazyRoute
+  '/game/intro': typeof GameIntroIndexLazyRoute
+  '/game/step/$step': typeof GameStepStepIndexRoute
 }
 
 export interface FileRoutesById {
@@ -96,14 +134,22 @@ export interface FileRoutesById {
   '/': typeof IndexLazyRoute
   '/game': typeof GameRouteWithChildren
   '/game/': typeof GameIndexLazyRoute
+  '/game/intro/': typeof GameIntroIndexLazyRoute
+  '/game/step/$step/': typeof GameStepStepIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/game' | '/game/'
+  fullPaths: '/' | '/game' | '/game/' | '/game/intro' | '/game/step/$step'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/game'
-  id: '__root__' | '/' | '/game' | '/game/'
+  to: '/' | '/game' | '/game/intro' | '/game/step/$step'
+  id:
+    | '__root__'
+    | '/'
+    | '/game'
+    | '/game/'
+    | '/game/intro/'
+    | '/game/step/$step/'
   fileRoutesById: FileRoutesById
 }
 
@@ -137,11 +183,21 @@ export const routeTree = rootRoute
     "/game": {
       "filePath": "game.tsx",
       "children": [
-        "/game/"
+        "/game/",
+        "/game/intro/",
+        "/game/step/$step/"
       ]
     },
     "/game/": {
       "filePath": "game/index.lazy.tsx",
+      "parent": "/game"
+    },
+    "/game/intro/": {
+      "filePath": "game/intro/index.lazy.tsx",
+      "parent": "/game"
+    },
+    "/game/step/$step/": {
+      "filePath": "game/step/$step/index.tsx",
       "parent": "/game"
     }
   }

@@ -10,8 +10,8 @@ function RouteComponent() {
   return (
     <SidebarProvider defaultOpen={false}>
       <Bag />
-      <SidebarTrigger className="fixed right-4 top-4 text-white text-lg" />
-      <main className="text-white">
+      <SidebarTrigger className="fixed right-4 top-4 text-white text-lg z-50" />
+      <main className="text-white fixed left-0 top-0 w-full h-full min-h-screen">
 
         <Outlet />
       </main>
