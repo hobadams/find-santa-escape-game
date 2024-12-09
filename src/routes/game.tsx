@@ -11,11 +11,11 @@ function RouteComponent() {
     <SidebarProvider defaultOpen={false}>
       <Bag />
       <SidebarTrigger className="fixed right-4 top-4 text-white text-lg z-50" />
-      <main className="text-white fixed left-0 top-0 w-full h-full min-h-screen">
+      <main className="text-white fixed left-0 top-0 w-full h-full min-h-screen bg-gradient-to-b from-gray-800 to-gray-900">
 
         <Outlet />
       </main>
-      <Link to="/" className="fixed bottom-4 left-4 text-white hover:underline">Exit game</Link>
+      <Link href="/" className="fixed bottom-4 left-4 text-white hover:underline">Exit game</Link>
     </SidebarProvider>
   )
 }

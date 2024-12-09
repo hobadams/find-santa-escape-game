@@ -20,7 +20,7 @@ function RouteComponent() {
     return <div>Step {Number(step) - 1} must be completed first</div>
   }
 
-  dispatch(setCurrentStep(step))
+  dispatch(setCurrentStep(Number(step)))
 
   return <div>Hello "/game/$step/"! {step} {currentStep}</div>
 }

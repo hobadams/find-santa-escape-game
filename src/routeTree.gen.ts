@@ -13,16 +13,22 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as IndexImport } from './routes/_index'
 import { Route as GameImport } from './routes/game'
+import { Route as IndexIndexImport } from './routes/_index/index'
 import { Route as GameStepStepIndexImport } from './routes/game/step/$step/index'
 
 // Create Virtual Routes
 
-const IndexLazyImport = createFileRoute('/')()
 const GameIndexLazyImport = createFileRoute('/game/')()
 const GameIntroIndexLazyImport = createFileRoute('/game/intro/')()
 
 // Create/Update Routes
+
+const IndexRoute = IndexImport.update({
+  id: '/_index',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const GameRoute = GameImport.update({
   id: '/game',
@@ -30,17 +36,17 @@ const GameRoute = GameImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const IndexLazyRoute = IndexLazyImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
-
 const GameIndexLazyRoute = GameIndexLazyImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => GameRoute,
 } as any).lazy(() => import('./routes/game/index.lazy').then((d) => d.Route))
+
+const IndexIndexRoute = IndexIndexImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => IndexRoute,
+} as any)
 
 const GameIntroIndexLazyRoute = GameIntroIndexLazyImport.update({
   id: '/intro/',
@@ -60,11 +66,11 @@ const GameStepStepIndexRoute = GameStepStepIndexImport.update({
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexLazyImport
+    '/_index': {
+      id: '/_index'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
     '/game': {
@@ -73,6 +79,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/game'
       preLoaderRoute: typeof GameImport
       parentRoute: typeof rootRoute
+    }
+    '/_index/': {
+      id: '/_index/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexIndexImport
+      parentRoute: typeof IndexImport
     }
     '/game/': {
       id: '/game/'
@@ -100,6 +113,16 @@ declare module '@tanstack/react-router' {
 
 // Create and export the route tree
 
+interface IndexRouteChildren {
+  IndexIndexRoute: typeof IndexIndexRoute
+}
+
+const IndexRouteChildren: IndexRouteChildren = {
+  IndexIndexRoute: IndexIndexRoute,
+}
+
+const IndexRouteWithChildren = IndexRoute._addFileChildren(IndexRouteChildren)
+
 interface GameRouteChildren {
   GameIndexLazyRoute: typeof GameIndexLazyRoute
   GameIntroIndexLazyRoute: typeof GameIntroIndexLazyRoute
@@ -115,15 +138,16 @@ const GameRouteChildren: GameRouteChildren = {
 const GameRouteWithChildren = GameRoute._addFileChildren(GameRouteChildren)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexLazyRoute
+  '': typeof IndexRouteWithChildren
   '/game': typeof GameRouteWithChildren
+  '/': typeof IndexIndexRoute
   '/game/': typeof GameIndexLazyRoute
   '/game/intro': typeof GameIntroIndexLazyRoute
   '/game/step/$step': typeof GameStepStepIndexRoute
 }
 
 export interface FileRoutesByTo {
-  '/': typeof IndexLazyRoute
+  '/': typeof IndexIndexRoute
   '/game': typeof GameIndexLazyRoute
   '/game/intro': typeof GameIntroIndexLazyRoute
   '/game/step/$step': typeof GameStepStepIndexRoute
@@ -131,8 +155,9 @@ export interface FileRoutesByTo {
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
-  '/': typeof IndexLazyRoute
+  '/_index': typeof IndexRouteWithChildren
   '/game': typeof GameRouteWithChildren
+  '/_index/': typeof IndexIndexRoute
   '/game/': typeof GameIndexLazyRoute
   '/game/intro/': typeof GameIntroIndexLazyRoute
   '/game/step/$step/': typeof GameStepStepIndexRoute
@@ -140,13 +165,14 @@ export interface FileRoutesById {
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/game' | '/game/' | '/game/intro' | '/game/step/$step'
+  fullPaths: '' | '/game' | '/' | '/game/' | '/game/intro' | '/game/step/$step'
   fileRoutesByTo: FileRoutesByTo
   to: '/' | '/game' | '/game/intro' | '/game/step/$step'
   id:
     | '__root__'
-    | '/'
+    | '/_index'
     | '/game'
+    | '/_index/'
     | '/game/'
     | '/game/intro/'
     | '/game/step/$step/'
@@ -154,12 +180,12 @@ export interface FileRouteTypes {
 }
 
 export interface RootRouteChildren {
-  IndexLazyRoute: typeof IndexLazyRoute
+  IndexRoute: typeof IndexRouteWithChildren
   GameRoute: typeof GameRouteWithChildren
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexLazyRoute: IndexLazyRoute,
+  IndexRoute: IndexRouteWithChildren,
   GameRoute: GameRouteWithChildren,
 }
 
@@ -173,12 +199,15 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/",
+        "/_index",
         "/game"
       ]
     },
-    "/": {
-      "filePath": "index.lazy.tsx"
+    "/_index": {
+      "filePath": "_index.tsx",
+      "children": [
+        "/_index/"
+      ]
     },
     "/game": {
       "filePath": "game.tsx",
@@ -187,6 +216,10 @@ export const routeTree = rootRoute
         "/game/intro/",
         "/game/step/$step/"
       ]
+    },
+    "/_index/": {
+      "filePath": "_index/index.tsx",
+      "parent": "/_index"
     },
     "/game/": {
       "filePath": "game/index.lazy.tsx",

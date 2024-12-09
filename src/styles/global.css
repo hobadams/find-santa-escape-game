@@ -4,7 +4,7 @@
 
 @layer base {
   html {
-    @apply h-screen bg-gradient-to-b from-indigo-900 via-blue-900 to-cyan-900 font-sans;
+    @apply h-screen bg-gradient-to-b from-gray-800 to-gray-900 font-sans;
   }
   body {
     @apply min-h-screen;
@@ -147,9 +147,12 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply box-content;
   }
   body {
     @apply bg-background text-foreground;
+  }
+  .contain-layout {
+    contain: layout;
   }
 }
