@@ -20,6 +20,12 @@ const getItemDetails = (item: BagItem): ItemDetails | null => {
         description: "A beautiful snow globe with a winter scene inside. Your Grandma gave you this.",
         image: "/images/snow-globe.webp",
       }
+    case "map":
+      return {
+        name: "First floor map",
+        description: "You found this in the entrance hallway when coming from the main entrance.",
+        image: "/images/map.png",
+      }
 
     default:
       return null
@@ -46,14 +52,14 @@ export function Bag() {
               if (!itemDetails) return null
               return (
                 <div key={item} className="border border-dashed border-sidebar-background/90 h-[100px] w-[100px] rounded-full border-2 hover:opacity-80">
-                  <Dialog >
+                  <Dialog>
                     <DialogTrigger>
                       <img src={itemDetails.image} alt={itemDetails.name} className="w-full h-full rounded-full" />
                     </DialogTrigger>
                     <DialogContent className="text-center">
                       <DialogTitle>{itemDetails.name}</DialogTitle>
                       <DialogDescription>{itemDetails.description}</DialogDescription>
-                      <img src={itemDetails.image} alt={itemDetails.name} className="rounded-lg w-[400px] h-[400px] mx-auto" />
+                      <img src={itemDetails.image} alt={itemDetails.name} className="rounded-lg w-[750px] h-[750px] mx-auto" />
                     </DialogContent>
                   </Dialog>
                 </div>

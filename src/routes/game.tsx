@@ -19,7 +19,7 @@ function RouteComponent() {
 
         <Outlet />
       </main>
-      <footer className="fixed bottom-0 left-0 w-full text-white flex items-center justify-between p-2 bg-primary">
+      <footer className="fixed bottom-0 left-0 w-full text-white flex items-center justify-between p-2">
         <Link href="/" className={cn(buttonVariants({ variant: 'secondary', size: 'sm' }))}>Exit game</Link>
         <div className="flex items-center justify-between gap-4">
           <Timer />

@@ -1,21 +1,22 @@
-import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
 
-export type BagItem = "snow-globe" | "card" | "morse-code";
+export type BagItem = 'snow-globe' | 'card' | 'morse-code' | 'map';
 
 export interface BagState {
   items: BagItem[];
 }
 
 const initialState: BagState = {
-  items: ["snow-globe"],
+  items: ['snow-globe'],
 };
 
 export const bagSlice = createSlice({
-  name: "bag",
+  name: 'bag',
   initialState,
   reducers: {
     addItem: (state, action: PayloadAction<BagItem>) => {
+      if (state.items.includes(action.payload)) return;
       state.items.push(action.payload);
     },
   },

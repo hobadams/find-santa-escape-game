@@ -36,11 +36,11 @@ const Intro = () => {
 
   const finalMessages: Message[] = [
     { sender: 'Eddy the Elf', text: "🚨 HELP NEEDED! 🚨", time: formatDate(new Date()), type: 'sender' },
-    { sender: 'Eddy the Elf', text: "Santa is missing!", time: formatDate(new Date()), type: 'sender' },
-    { sender: 'Eddy the Elf', text: "We last saw him on his present delivery route, but he's vanished without a trace.", time: formatDate(new Date()), type: 'sender' },
-    { sender: 'Eddy the Elf', text: "The last known location was at number 666 Nightmare Street. I desperately need your help to find him before Christmas is ruined.", time: formatDate(new Date()), type: 'sender' },
+    { sender: 'Eddy the Elf', text: "Santa is missing! 😱", time: formatDate(new Date()), type: 'sender' },
+    { sender: 'Eddy the Elf', text: "We last saw him on his present delivery route 🎁, but he's vanished without a trace.", time: formatDate(new Date()), type: 'sender' },
+    { sender: 'Eddy the Elf', text: "The last known location was at number 666 Nightmare Street. I desperately need your help to find him before Christmas is ruined. 🎄💩", time: formatDate(new Date()), type: 'sender' },
     { sender: 'Eddy the Elf', text: "....", time: formatDate(new Date()), type: 'sender' },
-    { sender: 'Eddy the Elf', text: "💩🦌🔴", time: formatDate(new Date()), type: 'sender' },
+    { sender: 'Eddy the Elf', text: "🦌🔴", time: formatDate(new Date()), type: 'sender' },
     { sender: 'Eddy the Elf', text: "I have Rudolph pestering me...If we don't get back on track in an hour Santa won't have time to deliver to everyone. Please help me.", time: formatDate(new Date()), type: 'sender' },
     { sender: 'Eddy the Elf', text: "If you need a hand just text me....", time: formatDate(new Date()), type: 'sender' },
   ];

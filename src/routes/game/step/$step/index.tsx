@@ -1,3 +1,4 @@
+import { Entrance } from '@/components/puzzles/Entrance/Entrance'
 import { House } from '@/components/puzzles/House/House'
 import { setCurrentStep, setStartTime } from '@/state/gameSlice'
 import { RootState } from '@/state/store'
@@ -31,7 +32,7 @@ function RouteComponent() {
     case '1':
       return <House />
     case '2':
-      return <p>step 2</p>
+      return <Entrance />
     default:
       return <p>step not found</p>
   }
