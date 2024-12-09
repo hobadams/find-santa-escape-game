@@ -1,7 +1,6 @@
-import { AppSidebar } from '@/components/AppSidebar/AppSidebar'
 import { Bag } from '@/components/Bag/Bag'
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
-import { createFileRoute, Outlet } from '@tanstack/react-router'
+import { createFileRoute, Link, Outlet } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/game')({
   component: RouteComponent,
@@ -10,12 +9,13 @@ export const Route = createFileRoute('/game')({
 function RouteComponent() {
   return (
     <SidebarProvider defaultOpen={false}>
-      <AppSidebar />
+      <Bag />
+      <SidebarTrigger className="fixed right-4 top-4 text-white text-lg" />
       <main className="text-white">
-        <SidebarTrigger className="text-white" />
-        <Bag />
+
         <Outlet />
       </main>
+      <Link to="/" className="fixed bottom-4 left-4 text-white hover:underline">Exit game</Link>
     </SidebarProvider>
   )
 }

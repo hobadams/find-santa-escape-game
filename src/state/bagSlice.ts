@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-type Item = "card" | "morse-code";
+export type BagItem = "card" | "morse-code";
 
 export interface BagState {
-  items: Item[];
+  items: BagItem[];
 }
 
 const initialState: BagState = {
@@ -15,7 +15,7 @@ export const bagSlice = createSlice({
   name: "bag",
   initialState,
   reducers: {
-    addItem: (state, action: PayloadAction<Item>) => {
+    addItem: (state, action: PayloadAction<BagItem>) => {
       state.items.push(action.payload);
     },
   },
