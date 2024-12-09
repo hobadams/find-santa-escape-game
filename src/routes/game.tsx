@@ -1,4 +1,6 @@
 import { Bag } from '@/components/Bag/Bag'
+import { Clue } from '@/components/Clue/Clue'
+import Timer from '@/components/Timer/Timer'
 import { buttonVariants } from '@/components/ui/button'
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
 import { cn } from '@/lib/utils'
@@ -17,7 +19,15 @@ function RouteComponent() {
 
         <Outlet />
       </main>
-      <Link href="/" className={cn(buttonVariants({ variant: 'secondary', size: 'sm' }), 'fixed bottom-4 left-4')}>Exit game</Link>
+      <footer className="fixed bottom-0 left-0 w-full text-white flex items-center justify-between p-2 bg-primary">
+        <Link href="/" className={cn(buttonVariants({ variant: 'secondary', size: 'sm' }))}>Exit game</Link>
+        <div className="flex items-center justify-between gap-4">
+          <Timer />
+          <Clue />
+        </div>
+
+      </footer>
+
     </SidebarProvider>
   )
 }

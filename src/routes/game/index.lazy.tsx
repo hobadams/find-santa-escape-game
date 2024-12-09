@@ -7,7 +7,7 @@ export const Route = createLazyFileRoute('/game/')({
 })
 
 function RouteComponent() {
-  const { currentStep } = useSelector((state: RootState) => state.step)
+  const { currentStep } = useSelector((state: RootState) => state.game)
   const navigate = useNavigate();
 
   if (currentStep) {

@@ -1,26 +1,20 @@
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import configReducer from "./configSlice";
-import bagReducer from "./bagSlice";
-import stepReducer from "./stepSlice";
-import {
-  loadStateFromLocalStorage,
-  saveStateToLocalStorage,
-} from "@/util/stateToLocalStorage";
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import configReducer from './configSlice';
+import bagReducer from './bagSlice';
+import gameReducer from './gameSlice';
+import { loadStateFromLocalStorage, saveStateToLocalStorage } from '@/util/stateToLocalStorage';
 
-export const RESET_GAME_ACTION = "RESET_GAME";
+export const RESET_GAME_ACTION = 'RESET_GAME';
 
 // Combine all slice reducers
 const appReducer = combineReducers({
   config: configReducer,
   bag: bagReducer,
-  step: stepReducer,
+  game: gameReducer,
 });
 
 // Create a root reducer that listens for the RESET_STATE action
-const rootReducer = (
-  state: ReturnType<typeof appReducer> | undefined,
-  action: any,
-) => {
+const rootReducer = (state: ReturnType<typeof appReducer> | undefined, action: any) => {
   if (action.type === RESET_GAME_ACTION) {
     state = undefined; // Reset the entire state
   }

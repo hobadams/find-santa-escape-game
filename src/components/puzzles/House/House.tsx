@@ -1,5 +1,11 @@
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { cn } from "@/lib/utils";
+import { setStepCompleted } from "@/state/gameSlice";
+import { RootState } from "@/state/store";
+import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 export const House = () => {
   return (
@@ -22,17 +28,33 @@ export const House = () => {
 }
 
 const Puzzle = () => {
+
+  const { steps } = useSelector((state: RootState) => state.game)
+  const [open, setOpen] = useState(false);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+
+    const step = steps.find((step) => step.key === 1);
+
+    if (step?.completed) {
+      setOpen(true);
+    }
+  }, [steps])
+
   // Array of button properties
   const buttons = [
     { id: 'A1', letter: 'A' },
     { id: 'S', letter: 'S' },
+    { id: 'N', letter: 'N' },
     { id: 'T', letter: 'T' },
     { id: 'A2', letter: 'A' },
-    { id: 'N', letter: 'N' }
+
   ];
 
   // State to hold the sequence of letters
   const [letters, setLetters] = useState('');
+  const [hasError, setHasError] = useState(false);
   // State to manage button enable/disable status
   const [disabledButtons, setDisabledButtons] = useState<Record<string, boolean>>({
     A1: false,
@@ -51,13 +73,20 @@ const Puzzle = () => {
   // Reset all states to initial
   const handleReset = () => {
     setLetters('');
+    setHasError(false);
     setDisabledButtons(buttons.reduce<{ A1: boolean; S: boolean; T: boolean; A2: boolean; N: boolean }>((acc, button) => ({ ...acc, [button.id]: false }), { A1: false, S: false, T: false, A2: false, N: false }));
   };
 
 
   useEffect(() => {
     if (letters.length === 5) {
-      alert('You have clicked all the letters!');
+      if (letters === 'SATAN') {
+        setHasError(false);
+        dispatch(setStepCompleted(1));
+
+      } else {
+        setHasError(true);
+      }
     }
   }, [letters])
 
@@ -78,11 +107,24 @@ const Puzzle = () => {
       <div className="text-center text-xl">
         {letters}
       </div>
+      {hasError && (
+        <div className="text-red-500 mt-4">
+          Hmmmmm, something isn't quite right. <Button onClick={handleReset} variant="link" className="p-0 underline">Try again</Button>.
+        </div>
+      )}
       {letters.length > 0 && (
         <div>
           <Button onClick={handleReset} variant="link" className="text-white">Reset</Button>
         </div>
       )}
+
+      <Dialog open={open}>
+        <DialogContent className="text-center">
+          <h3 className="font-bold text-xl">CLICK!!</h3>
+          <p>The door creaks open.</p>
+          <Link href="/game/step/2" className={cn(buttonVariants())}>Enter the house</Link>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

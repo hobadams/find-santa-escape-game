@@ -6,6 +6,7 @@ import { useResetApp } from '@/hooks/useResetApp'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
+import { Input } from '@/components/ui/input'
 
 export const Route = createFileRoute('/_index/')({
   component: Index,
@@ -68,10 +69,9 @@ const NameForm = () => {
       </DialogTrigger>
 
       <DialogContent>
-        <p>Enter your name</p>
-        <form onSubmit={handleNameChange}>
-          <input type="text" name="name" />
-          <button type="submit">Start your adventure</button>
+        <form onSubmit={handleNameChange} className="mt-8">
+          <Input type="text" name="name" placeholder='Enter your name' required maxLength={10} minLength={3} />
+          <Button type="submit" className='mt-4 w-full'>Start your adventure</Button>
         </form>
       </DialogContent>
     </Dialog>

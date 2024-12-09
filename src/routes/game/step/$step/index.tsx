@@ -1,5 +1,5 @@
 import { House } from '@/components/puzzles/House/House'
-import { setCurrentStep } from '@/state/stepSlice'
+import { setCurrentStep, setStartTime } from '@/state/gameSlice'
 import { RootState } from '@/state/store'
 import { createFileRoute } from '@tanstack/react-router'
 import { useDispatch, useSelector } from 'react-redux'
@@ -10,7 +10,7 @@ export const Route = createFileRoute('/game/step/$step/')({
 
 function RouteComponent() {
   const { step } = Route.useParams()
-  const { steps } = useSelector((state: RootState) => state.step)
+  const { steps, startTime } = useSelector((state: RootState) => state.game)
   const dispatch = useDispatch()
   if (!steps.find(s => s.key.toString() === step)) {
     return <div>Invalid step</div>
@@ -23,9 +23,15 @@ function RouteComponent() {
 
   dispatch(setCurrentStep(Number(step)))
 
+  if (step === '1' && !startTime) {
+    dispatch(setStartTime(new Date()))
+  }
+
   switch (step) {
     case '1':
       return <House />
+    case '2':
+      return <p>step 2</p>
     default:
       return <p>step not found</p>
   }
