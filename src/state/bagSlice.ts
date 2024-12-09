@@ -1,14 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-export type BagItem = "card" | "morse-code";
+export type BagItem = "snow-globe" | "card" | "morse-code";
 
 export interface BagState {
   items: BagItem[];
 }
 
 const initialState: BagState = {
-  items: ["card"],
+  items: ["snow-globe"],
 };
 
 export const bagSlice = createSlice({

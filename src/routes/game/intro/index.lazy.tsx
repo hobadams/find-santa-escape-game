@@ -11,10 +11,10 @@ export const Route = createLazyFileRoute('/game/intro/')({
 
 function RouteComponent() {
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center p-8">
       <Intro />
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 10, duration: 0.2 }}>
-        <Link href="/game/step/1" className={cn(buttonVariants())}>Help Eddie!</Link>
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 7, duration: 0.2 }}>
+        <Link href="/game/step/1" className={cn(buttonVariants())}>Help Eddie find Santa</Link>
       </motion.div>
     </div>
   );
@@ -33,8 +33,8 @@ const Intro = () => {
 
   const now = new Date();
   const initialMessages: Message[] = [
-    { sender: 'Eddy the Elf', text: `🌲 Hey ${name}, want to hear a secret about elves? We're always up to something!`, time: formatDate(new Date(now.setDate(now.getDate() - 1))), type: 'sender' },
-    { sender: name, text: "😄 That's too funny, Eddy! Do elves have a favorite type of music?", time: formatDate(new Date(now.setDate(now.getDate()))), type: 'receiver' },
+    { sender: 'Eddy the Elf', text: `🌲 Hey ${name}, how have you been?`, time: formatDate(new Date(now.setDate(now.getDate() - 1))), type: 'sender' },
+    { sender: name, text: "😄 I'm good thanks Eddy. I was thinking the other day, do elves have a favorite type of music?", time: formatDate(new Date(now.setDate(now.getDate()))), type: 'receiver' },
     { sender: 'Eddy the Elf', text: "🎵 Absolutely! We're big fans of wrap music.", time: formatDate(new Date(now.setDate(now.getDate()))), type: 'sender' },
     { sender: name, text: "🎁 Wrap music? That's hilarious! Thanks for the chuckle, Eddy.", time: formatDate(new Date(now.setDate(now.getDate()))), type: 'receiver' },
   ];
@@ -43,17 +43,25 @@ const Intro = () => {
     { sender: 'Eddy the Elf', text: "🚨 HELP NEEDED! 🚨", time: formatDate(new Date()), type: 'sender' },
     { sender: 'Eddy the Elf', text: "Santa is missing!", time: formatDate(new Date()), type: 'sender' },
     { sender: 'Eddy the Elf', text: "We last saw him on his present delivery route, but he's vanished without a trace.", time: formatDate(new Date()), type: 'sender' },
-    { sender: 'Eddy the Elf', text: "The last known location was at number 666 Nightmare Street. We desperately need your help to find him before Christmas is ruined. Are you ready to save Christmas?", time: formatDate(new Date()), type: 'sender' },
+    { sender: 'Eddy the Elf', text: "The last known location was at number 666 Nightmare Street. I desperately need your help to find him before Christmas is ruined.", time: formatDate(new Date()), type: 'sender' },
+    { sender: 'Eddy the Elf', text: "....", time: formatDate(new Date()), type: 'sender' },
+    { sender: 'Eddy the Elf', text: "💩🦌🔴", time: formatDate(new Date()), type: 'sender' },
+    { sender: 'Eddy the Elf', text: "I have Rudolph pestering me...If we don't get back on track in an hour Santa won't have time to deliver to everyone. Please help me.", time: formatDate(new Date()), type: 'sender' },
   ];
 
 
 
   return (
-    <div className="mt-8 mb-4 w-[450px] h-[650px] max-h-screen rounded-lg p-8 bg-gradient-to-b from-white to-gray-100 shadow-lg">
-      <div className="h-[650px] overflow-hidden">
-        <div
-          className="relative z-20 max-w-full bg-green-100 p-4 rounded-lg overflow-auto h-full shadow-inner"
-        >
+    <div className="mt-8 mb-4 w-[450px] h-[650px] overflow-hidden max-h-screen rounded-lg p-4 bg-gradient-to-b from-white to-gray-100 shadow-lg">
+
+      <div
+        className="relative z-20 max-w-full bg-green-100/50 rounded-lg overflow-auto h-full shadow-inner"
+      >
+        <div className="sticky left-0 top-0 w-full bg-green-100/90 p-4 flex items-center">
+          <img src="/images/eddy.webp" alt="Eddy the Elf" className="w-8 h-8 rounded-full mr-8" />
+          <p className="text-sm text-gray-600 font-bold">Conversation with Eddy the Elf</p>
+        </div>
+        <div className="p-4">
           <div className="mb-2 text-sm text-gray-600 text-center">Yesterday</div>
 
           {initialMessages.map((msg, index) => (
@@ -63,6 +71,8 @@ const Intro = () => {
 
           <FinalMessages messages={finalMessages} />
         </div>
+
+
       </div>
     </div>
   );
@@ -71,7 +81,7 @@ const Intro = () => {
 
 const MessageComponent = ({ sender, text, time, type }: Message) => (
 
-  <div className={`max-w-sm my-2 rounded-lg shadow-md ${type === 'sender' ? 'bg-gray-600' : 'bg-green-500 text-white ml-auto'}`}>
+  <div className={`max-w-[340px] my-2 rounded-lg shadow-md ${type === 'sender' ? 'bg-gray-500' : 'bg-green-600 text-white ml-auto'}`}>
     <div className="px-4 py-2">
       <div className="font-bold text-xs">{sender}</div>
 

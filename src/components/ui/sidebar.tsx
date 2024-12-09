@@ -1,7 +1,6 @@
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { VariantProps, cva } from "class-variance-authority"
-import { Backpack, PanelLeft } from "lucide-react"
 
 import { useIsMobile } from "@/hooks/use-mobile"
 import { cn } from "@/lib/utils"
@@ -239,7 +238,7 @@ const Sidebar = React.forwardRef<
             // Adjust the padding for floating and inset variants.
             variant === "floating" || variant === "inset"
               ? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)_+_theme(spacing.4)_+2px)]"
-              : "group-data-[collapsible=icon]:w-[--sidebar-width-icon] group-data-[side=left]:border-r group-data-[side=right]:border-l",
+              : "group-data-[collapsible=icon]:w-[--sidebar-width-icon]",
             className
           )}
           {...props}
@@ -267,7 +266,7 @@ const SidebarTrigger = React.forwardRef<
     <button
       ref={ref}
       data-sidebar="trigger"
-      className={cn(className, 'bg-none flex items-center justify-center gap-2 hover:opacity-60')}
+      className={cn(className, 'bg-none flex items-center justify-center gap-2 hover:opacity-90')}
       onClick={(event) => {
         onClick?.(event)
         toggleSidebar()
@@ -275,12 +274,7 @@ const SidebarTrigger = React.forwardRef<
       {...props}
     >
       <span className="sr-only">Bag</span>
-      <span className="rounded-full h-[50px] w-[50px] flex items-center justify-center bg-red-500">
-        <Backpack size={24} />
-      </span>
-
-
-
+      <img src="/images/bag.webp" alt="Bag" className="w-16 h-16 rounded-full" />
     </button>
   )
 })

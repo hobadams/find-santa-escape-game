@@ -1,3 +1,4 @@
+import { House } from '@/components/puzzles/House/House'
 import { setCurrentStep } from '@/state/stepSlice'
 import { RootState } from '@/state/store'
 import { createFileRoute } from '@tanstack/react-router'
@@ -9,7 +10,7 @@ export const Route = createFileRoute('/game/step/$step/')({
 
 function RouteComponent() {
   const { step } = Route.useParams()
-  const { steps, currentStep } = useSelector((state: RootState) => state.step)
+  const { steps } = useSelector((state: RootState) => state.step)
   const dispatch = useDispatch()
   if (!steps.find(s => s.key.toString() === step)) {
     return <div>Invalid step</div>
@@ -22,5 +23,10 @@ function RouteComponent() {
 
   dispatch(setCurrentStep(Number(step)))
 
-  return <div>Hello "/game/$step/"! {step} {currentStep}</div>
+  switch (step) {
+    case '1':
+      return <House />
+    default:
+      return <p>step not found</p>
+  }
 }
