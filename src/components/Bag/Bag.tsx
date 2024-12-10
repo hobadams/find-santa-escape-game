@@ -53,7 +53,7 @@ export function Bag() {
   return (
 
     <>
-      <Sidebar variant="sidebar" className="z-20">
+      <Sidebar variant="sidebar" className="z-20" side="right">
         <SidebarHeader><h3 className="text-center">Your Bag</h3></SidebarHeader>
         <SidebarContent>
           <div className="grid grid-cols-2 gap-4 p-4">

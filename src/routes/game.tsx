@@ -16,13 +16,12 @@ function RouteComponent() {
     <SidebarProvider defaultOpen={false}>
 
       <Bag />
-      <header className="flex justify-end fixed top-4 right-4 w-auto z-50 gap-4">
+      <header className="flex justify-start fixed left-0 top-0 w-auto z-10 bg-black/90 py-2 px-4 rounded-lg">
         <div className="flex items-center justify-between gap-4">
-          <Timer />
+          <SidebarTrigger />
           <Clue />
+          <Timer />
         </div>
-
-        <SidebarTrigger />
       </header>
 
 

@@ -60,7 +60,7 @@ const Timer = () => {
   return (
     <div className="text-white">
       {remainingTime !== null ? (
-        <p className="text-lg flex items-center gap-2"><Clock />{remainingTime} minutes left</p>
+        <p className="text-md flex items-center gap-2"><Clock size={20} />{remainingTime} minutes left</p>
       ) : (
         null
       )}

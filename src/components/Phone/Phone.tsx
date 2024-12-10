@@ -52,7 +52,7 @@ export const Phone = ({ initialMessages, finalMessages, start, sameDay = true }:
             <>
               {!sameDay ? <div className="mt-5 mb-2 text-sm text-gray-600 text-center">Today</div> : null}
 
-              <MessageConversation messages={finalMessages} hasDelay={!sameDay} afterShow={scrollToBottom} />
+              <MessageConversation messages={finalMessages} afterShow={scrollToBottom} />
             </>
           ) : null}
 
@@ -77,14 +77,13 @@ export const MessageComponent = ({ sender, text, time, type }: Message) => (
 
 );
 
-export const MessageConversation = ({ messages, hasDelay, afterShow }: { messages: Message[], hasDelay: boolean, afterShow: () => void }) => {
+export const MessageConversation = ({ messages, afterShow }: { messages: Message[], afterShow: () => void }) => {
   const container = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
       transition: {
         staggerChildren: Math.random() * (3 - 1) + 1, // Delay between children
-        delayChildren: hasDelay ? 1.5 : 0, // Start delay
       },
     },
   };

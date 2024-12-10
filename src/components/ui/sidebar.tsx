@@ -274,7 +274,7 @@ const SidebarTrigger = React.forwardRef<
       {...props}
     >
       <span className="sr-only">Bag</span>
-      <img src="/images/bag.webp" alt="Bag" className="w-16 h-16 rounded-full" />
+      <img src="/images/bag.webp" alt="Bag" className="w-[50px] h-[50px] rounded-full" />
     </button>
   )
 })

@@ -70,7 +70,7 @@ export const Clue = () => {
   return (
     <Dialog>
       <DialogTrigger>
-        <img src="/images/eddy.webp" alt="Eddy" className="w-[60px] h-[60px] rounded-full" />
+        <img src="/images/eddy.webp" alt="Eddy" className="w-[50px] h-[50px] rounded-full" />
       </DialogTrigger>
       <DialogContent className="bg-gray-800 border-gray-800 flex justify-center flex-col items-center">
         <Phone initialMessages={[getRandomMessage(initialMessages)]} finalMessages={finalMessages} start={getHelp} />
