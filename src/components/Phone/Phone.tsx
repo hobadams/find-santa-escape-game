@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useRef } from 'react';
 
 type PhoneProps = {
   initialMessages: Message[];
@@ -19,10 +20,22 @@ export const formatDate = (date: Date) =>
 
 export const Phone = ({ initialMessages, finalMessages, start, sameDay = true }: PhoneProps) => {
 
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    if (containerRef.current) {
+      containerRef.current.scrollTo({
+        top: containerRef.current.scrollHeight,
+        behavior: "smooth", // Smooth scrolling animation
+      });
+    }
+  };
+
   return (
     <div className="mt-8 mb-4 w-[400px] h-[550px] overflow-hidden max-h-screen rounded-lg p-4 bg-gradient-to-b from-white to-gray-100 shadow-lg">
 
       <div
+        ref={containerRef}
         className="relative z-20 max-w-full bg-green-100/50 rounded-lg overflow-auto h-full shadow-inner"
       >
         <div className="sticky left-0 top-0 w-full bg-green-100/90 p-4 flex items-center">
@@ -39,7 +52,7 @@ export const Phone = ({ initialMessages, finalMessages, start, sameDay = true }:
             <>
               {!sameDay ? <div className="mt-5 mb-2 text-sm text-gray-600 text-center">Today</div> : null}
 
-              <MessageConversation messages={finalMessages} hasDelay={!sameDay} />
+              <MessageConversation messages={finalMessages} hasDelay={!sameDay} afterShow={scrollToBottom} />
             </>
           ) : null}
 
@@ -64,7 +77,7 @@ export const MessageComponent = ({ sender, text, time, type }: Message) => (
 
 );
 
-export const MessageConversation = ({ messages, hasDelay }: { messages: Message[], hasDelay: boolean }) => {
+export const MessageConversation = ({ messages, hasDelay, afterShow }: { messages: Message[], hasDelay: boolean, afterShow: () => void }) => {
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -85,7 +98,7 @@ export const MessageConversation = ({ messages, hasDelay }: { messages: Message[
     <div className="mb-10">
       <motion.div variants={container} initial="hidden" animate="show">
         {messages.map((msg, index) => (
-          <motion.div key={index} variants={item}>
+          <motion.div key={index} variants={item} onAnimationComplete={() => afterShow()}>
             <MessageComponent {...msg} />
           </motion.div>
         ))}

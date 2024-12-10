@@ -1,19 +1,19 @@
 import { RootState } from '@/state/store'
-import { createLazyFileRoute, useNavigate } from '@tanstack/react-router'
+import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { useSelector } from 'react-redux'
 
-export const Route = createLazyFileRoute('/game/')({
+export const Route = createFileRoute('/game/')({
   component: RouteComponent,
 })
 
 function RouteComponent() {
   const { currentStep } = useSelector((state: RootState) => state.game)
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   if (currentStep) {
-    navigate({ to: `/game/step/${currentStep}` });
+    navigate({ to: `/game/step/${currentStep}` })
   } else {
-    navigate({ to: `/game/intro` });
+    navigate({ to: `/intro` })
   }
   return <p>...loading</p>
 }

@@ -47,13 +47,10 @@ function Index() {
           <Music />
           <span>Here are some spooooooooky songs</span>
         </a>
-
-        <a href="https://open.spotify.com/playlist/0X5baMRrz5QDNcC1mWvBNk?si=5130ee72e1d540f5" target='_blank' className={cn(buttonVariants({ variant: 'secondary', size: 'sm' }))}>
+        <a href="https://open.spotify.com/playlist/3ggRyPeN5BcQSBJ2UB6G8L?si=349c12717657490a" target='_blank' className={cn(buttonVariants({ variant: 'secondary', size: 'sm' }))}>
           <Music />
           <span>Here are some Christmas songs</span>
         </a>
-
-
       </div>
     </div>
   )

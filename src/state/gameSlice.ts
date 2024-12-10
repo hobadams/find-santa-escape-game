@@ -9,7 +9,9 @@ export type Step = {
 export interface GameState {
   currentStep?: number;
   startTime?: string; // Store as ISO string for serialization
+  completeTime?: string; // Store as ISO string for serialization
   steps: Step[];
+  clueCount: number;
 }
 
 const initialState: GameState = {
@@ -17,6 +19,7 @@ const initialState: GameState = {
     key: index + 1,
     completed: false,
   })),
+  clueCount: 0,
 };
 
 export const gameSlice = createSlice({
@@ -35,11 +38,17 @@ export const gameSlice = createSlice({
     setStartTime: (state, action: PayloadAction<Date>) => {
       state.startTime = action.payload.toISOString(); // Store as ISO string
     },
+    setCompleteTime: (state, action: PayloadAction<Date>) => {
+      state.startTime = action.payload.toISOString(); // Store as ISO string
+    },
+    useClue: state => {
+      state.clueCount += 1;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setCurrentStep, setStepCompleted, setStartTime } = gameSlice.actions;
+export const { setCurrentStep, setStepCompleted, setStartTime, useClue, setCompleteTime } = gameSlice.actions;
 
 export const selectStartTime = (state: { game: GameState }) => state.game.startTime;
 
