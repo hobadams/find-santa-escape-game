@@ -23,10 +23,28 @@ export const Clue = () => {
   }
 
   const initialMessages: Message[] = [
-    {
-      sender: 'Eddy the Elf', text: `Hey ${name}, do you want a hand?`, time: formatDate(new Date()), type: 'sender'
-    },
+    { sender: 'Eddy the Elf', text: `Hey ${name}, need a hand?`, time: formatDate(new Date()), type: 'sender' },
+    { sender: 'Eddy the Elf', text: `Hi ${name}, can I help you out?`, time: formatDate(new Date()), type: 'sender' },
+    { sender: 'Eddy the Elf', text: `Hello ${name}, do you want some assistance?`, time: formatDate(new Date()), type: 'sender' },
+    { sender: 'Eddy the Elf', text: `${name}, let me lend you a hand!`, time: formatDate(new Date()), type: 'sender' },
+    { sender: 'Eddy the Elf', text: `Hey ${name}, looks like you could use some help.`, time: formatDate(new Date()), type: 'sender' },
+    { sender: 'Eddy the Elf', text: `${name}, how about a little elf magic to assist you?`, time: formatDate(new Date()), type: 'sender' },
+    { sender: 'Eddy the Elf', text: `Need a hand, ${name}? I'm here to help!`, time: formatDate(new Date()), type: 'sender' },
   ];
+
+  const replies: Message[] = [
+    { sender: `${name}`, text: `Yes, please, Eddy! You're a lifesaver!`, time: formatDate(new Date()), type: 'receiver' },
+    { sender: `${name}`, text: `Thanks, Eddy, I really need the help!`, time: formatDate(new Date()), type: 'receiver' },
+    { sender: `${name}`, text: `I'd appreciate it, Eddy. Thank you!`, time: formatDate(new Date()), type: 'receiver' },
+    { sender: `${name}`, text: `Yes, Eddy, I could definitely use a hand.`, time: formatDate(new Date()), type: 'receiver' },
+    { sender: `${name}`, text: `Sure thing, Eddy. That'd be amazing!`, time: formatDate(new Date()), type: 'receiver' },
+    { sender: `${name}`, text: `Absolutely, Eddy. I owe you big time!`, time: formatDate(new Date()), type: 'receiver' },
+    { sender: `${name}`, text: `Thanks, Eddy! I don't know what I'd do without you!`, time: formatDate(new Date()), type: 'receiver' },
+  ];
+
+  function getRandomMessage(messages: Message[]): Message {
+    return messages[Math.floor(Math.random() * messages.length)] as Message;
+  }
 
   const messages = getMessageFromStep(currentStep)
 
@@ -34,16 +52,12 @@ export const Clue = () => {
 
   if (messages) {
     finalMessages = [
-      {
-        sender: `${name}`, text: `Yes please Eddy....I owe you!`, time: formatDate(new Date()), type: 'receiver'
-      },
+      getRandomMessage(replies),
       ...messages,
     ];
   } else {
     finalMessages = [
-      {
-        sender: `${name}`, text: `Yes please Eddy....I owe you!`, time: formatDate(new Date()), type: 'receiver'
-      },
+      getRandomMessage(replies),
       {
         sender: 'Eddy the Elf', text: `🤔 Hmmm, I'm stumped. Sorry I can't help 😔`, time: formatDate(new Date()), type: 'sender'
       },
@@ -59,7 +73,7 @@ export const Clue = () => {
         <img src="/images/eddy.webp" alt="Eddy" className="w-[60px] h-[60px] rounded-full" />
       </DialogTrigger>
       <DialogContent className="bg-gray-800 border-gray-800 flex justify-center flex-col items-center">
-        <Phone initialMessages={initialMessages} finalMessages={finalMessages} start={getHelp} />
+        <Phone initialMessages={[getRandomMessage(initialMessages)]} finalMessages={finalMessages} start={getHelp} />
         {!getHelp ? <Button onClick={() => setGetHelp(true)} className="mt-4">Get Help</Button> : null}
       </DialogContent>
     </Dialog>
@@ -79,6 +93,12 @@ const getMessageFromStep = (step: number): Message[] | null => {
           sender: 'Eddy the Elf', text: `I hope that helps ⭐⭐`, time: formatDate(new Date()), type: 'sender'
         },
       ]
+    case 2:
+      return [
+        {
+          sender: 'Eddy the Elf', text: 'I think you should just go to the pantry...time is not on your side! ⏰', time: formatDate(new Date()), type: 'sender'
+        },
+      ]
     case 3:
       return [
         {
@@ -89,6 +109,18 @@ const getMessageFromStep = (step: number): Message[] | null => {
         },
         {
           sender: 'Eddy the Elf', text: `It's not like Santa to number his lists, I wonder why he did?`, time: formatDate(new Date()), type: 'sender'
+        },
+      ]
+    case 4:
+      return [
+        {
+          sender: 'Eddy the Elf', text: 'Wow that ghost is SCARY 👻 😨', time: formatDate(new Date()), type: 'sender'
+        },
+        {
+          sender: 'Eddy the Elf', text: `We picked up a map of the first floor....`, time: formatDate(new Date()), type: 'sender'
+        },
+        {
+          sender: 'Eddy the Elf', text: `Maybe we can retrace our steps? 👣 Did the ghost say they were the ghost of past steps....sounds like a lame ghost 😝.`, time: formatDate(new Date()), type: 'sender'
         },
       ]
     default:
