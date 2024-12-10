@@ -83,7 +83,7 @@ export const MessageConversation = ({ messages, hasDelay, afterShow }: { message
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: Math.random() * (2 - 1) + 1, // Delay between children
+        staggerChildren: Math.random() * (3 - 1) + 1, // Delay between children
         delayChildren: hasDelay ? 1.5 : 0, // Start delay
       },
     },
