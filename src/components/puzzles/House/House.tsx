@@ -1,5 +1,5 @@
 import { Button, buttonVariants } from "@/components/ui/button";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 import { PuzzleProps } from "@/routes/game/step/$step";
 import { setStepCompleted } from "@/state/gameSlice";
@@ -121,6 +121,7 @@ const Puzzle = ({ step: currentStep }: PuzzleProps) => {
 
       <Dialog open={open}>
         <DialogContent className="text-center">
+          <DialogTitle className="sr-only">Eddy the Elf</DialogTitle>
           <h3 className="font-bold text-xl">CLICK!!</h3>
           <p>The door creaks open. You see a <strong>porch</strong> leading to an <strong>entrance hallway</strong>.</p>
           <Link href={`/game/step/${currentStep + 1}`} className={cn(buttonVariants())}>Enter the house.</Link>

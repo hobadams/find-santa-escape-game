@@ -19,7 +19,7 @@ const Timer = () => {
   useEffect(() => {
     if (!startTime) {
       // If no start time, set it when the game starts
-      dispatch(setStartTime(new Date()));
+      dispatch(setStartTime(new Date().toISOString()));
       return;
     }
 

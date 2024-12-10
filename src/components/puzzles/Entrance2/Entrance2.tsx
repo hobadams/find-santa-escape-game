@@ -52,7 +52,7 @@ export const Entrance2 = ({ step }: PuzzleProps) => {
 
         <div className="bg-white p-8 rounded text-center mb-8 text-black w-full">
           <p>You are back in the <strong>entrance hall</strong>.</p>
-          <p>You see a ghostly apparition in from of you....</p>
+          <p>You see a ghostly apparition in front of you....</p>
         </div>
 
         <div className="bg-white p-8 rounded text-center mb-8 text-black w-full">

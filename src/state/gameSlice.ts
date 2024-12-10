@@ -35,11 +35,11 @@ export const gameSlice = createSlice({
         step.completed = true;
       }
     },
-    setStartTime: (state, action: PayloadAction<Date>) => {
-      state.startTime = action.payload.toISOString(); // Store as ISO string
+    setStartTime: (state, action: PayloadAction<string>) => {
+      state.startTime = action.payload; // Store as ISO string
     },
-    setCompleteTime: (state, action: PayloadAction<Date>) => {
-      state.startTime = action.payload.toISOString(); // Store as ISO string
+    setCompleteTime: (state, action: PayloadAction<string>) => {
+      state.completeTime = action.payload; // Store as ISO string
     },
     useClue: state => {
       state.clueCount += 1;

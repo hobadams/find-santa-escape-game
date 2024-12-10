@@ -5,9 +5,10 @@ import { setName } from '@/state/configSlice'
 import { useResetApp } from '@/hooks/useResetApp'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
+import { Dialog, DialogContent, DialogTrigger, DialogTitle } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
 import { Music } from 'lucide-react'
+import { useEffect } from 'react'
 
 export const Route = createFileRoute('/_index/')({
   component: Index,
@@ -69,7 +70,7 @@ const NameForm = () => {
 
     if (name) {
       dispatch(setName(name))
-      navigate({ to: '/game' })
+      navigate({ to: '/intro' })
     }
   }
 
@@ -80,6 +81,7 @@ const NameForm = () => {
       </DialogTrigger>
 
       <DialogContent>
+        <DialogTitle className="sr-only">Eddy the Elf</DialogTitle>
         <form onSubmit={handleNameChange} className="mt-8">
           <Input type="text" name="name" placeholder='Enter your name' required maxLength={10} minLength={3} />
           <Button type="submit" className='mt-4 w-full'>Start your adventure</Button>

@@ -1,14 +1,16 @@
 import { RootState } from "@/state/store"
-import { useSelector } from "react-redux"
-import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog"
+import { useDispatch, useSelector } from "react-redux"
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "../ui/dialog"
 import { useEffect, useState } from "react"
 import { Button } from "../ui/button"
 import { formatDate, Message, Phone } from "../Phone/Phone"
+import { useClue } from "@/state/gameSlice"
 
 
 export const Clue = () => {
   const { currentStep } = useSelector((state: RootState) => state.game)
   const { name } = useSelector((state: RootState) => state.config)
+  const dispatch = useDispatch()
   const [getHelp, setGetHelp] = useState(false)
 
   useEffect(() => {
@@ -73,8 +75,10 @@ export const Clue = () => {
         <img src="/images/eddy.webp" alt="Eddy" className="w-[50px] h-[50px] rounded-full" />
       </DialogTrigger>
       <DialogContent className="bg-gray-800 border-gray-800 flex justify-center flex-col items-center">
+
+        <DialogTitle className="sr-only">Eddy the Elf</DialogTitle>
         <Phone initialMessages={[getRandomMessage(initialMessages)]} finalMessages={finalMessages} start={getHelp} />
-        {!getHelp ? <Button onClick={() => setGetHelp(true)} className="mt-4">Get Help</Button> : null}
+        {!getHelp ? <Button onClick={() => { setGetHelp(true); dispatch(useClue()) }} className="mt-4">Get Help</Button> : null}
       </DialogContent>
     </Dialog>
   )
