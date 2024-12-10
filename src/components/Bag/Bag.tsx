@@ -36,10 +36,6 @@ export function Bag() {
   const { items } = useSelector((state: RootState) => state.bag)
   const { open, setOpen } = useSidebar();
 
-
-
-
-
   return (
 
     <>

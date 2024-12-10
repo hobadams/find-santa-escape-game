@@ -1,4 +1,5 @@
 import { buttonVariants } from "@/components/ui/button";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
 import { addItem } from "@/state/bagSlice";
 import { setStepCompleted } from "@/state/gameSlice";
@@ -24,12 +25,12 @@ export const Entrance = () => {
         <div className="bg-white p-8 rounded text-center mb-8 text-black w-full">
           <p>You find yourself in a grand entrance hall.</p>
           <p>You look down and notice a <strong>map</strong> of the first floor. You decide it might be useful so you put it in your bag.</p>
-          <img src="/images/bag.webp" className="w-12 h-12 rounded-full mx-auto my-2" />
+          <SidebarTrigger className="mx-auto mt-4" />
         </div>
 
 
         <div className="bg-white p-8 rounded text-center mb-8 text-black w-full">
-          <p>You also notice footsteps heading right in front of you towards what looks like a pantry...</p>
+          <p>You also notice footsteps heading right in front of you towards what looks like a pantry on the left...</p>
         </div>
 
 
