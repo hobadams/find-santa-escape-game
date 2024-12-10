@@ -1,13 +1,14 @@
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
+import { PuzzleProps } from "@/routes/game/step/$step";
 import { setStepCompleted } from "@/state/gameSlice";
 import { RootState } from "@/state/store";
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-export const House = () => {
+export const House = ({ step }: PuzzleProps) => {
   return (
     <div className="flex h-screen">
       <div className="flex-1">
@@ -20,14 +21,14 @@ export const House = () => {
         </div>
         <img src="/images/doorstep.webp" alt="doorstep" className="w-[400px] h-[400px] mx-auto" />
 
-        <Puzzle />
+        <Puzzle step={step} />
       </div>
     </div>
 
   )
 }
 
-const Puzzle = () => {
+const Puzzle = ({ step: currentStep }: PuzzleProps) => {
 
   const { steps } = useSelector((state: RootState) => state.game)
   const [open, setOpen] = useState(false);
@@ -35,7 +36,7 @@ const Puzzle = () => {
 
   useEffect(() => {
 
-    const step = steps.find((step) => step.key === 1);
+    const step = steps.find((step) => step.key === currentStep);
 
     if (step?.completed) {
       setOpen(true);
@@ -121,8 +122,8 @@ const Puzzle = () => {
       <Dialog open={open}>
         <DialogContent className="text-center">
           <h3 className="font-bold text-xl">CLICK!!</h3>
-          <p>The door creaks open.</p>
-          <Link href="/game/step/2" className={cn(buttonVariants())}>Enter the house</Link>
+          <p>The door creaks open. You see a <strong>porch</strong> leading to an <strong>entrance hallway</strong>.</p>
+          <Link href={`/game/step/${currentStep + 1}`} className={cn(buttonVariants())}>Enter the house.</Link>
         </DialogContent>
       </Dialog>
     </div>

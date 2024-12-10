@@ -1,4 +1,5 @@
 import { Entrance } from '@/components/puzzles/Entrance/Entrance'
+import { Entrance2 } from '@/components/puzzles/Entrance2/Entrance2'
 import { House } from '@/components/puzzles/House/House'
 import { LivingRoom } from '@/components/puzzles/LivingRoom/LivingRoom'
 import { setCurrentStep, setStartTime } from '@/state/gameSlice'
@@ -9,6 +10,10 @@ import { useDispatch, useSelector } from 'react-redux'
 export const Route = createFileRoute('/game/step/$step/')({
   component: RouteComponent,
 })
+
+export type PuzzleProps = {
+  step: number
+}
 
 function RouteComponent() {
   const { step } = Route.useParams()
@@ -31,11 +36,13 @@ function RouteComponent() {
 
   switch (step) {
     case '1':
-      return <House />
+      return <House step={1} />
     case '2':
-      return <Entrance />
+      return <Entrance step={2} />
     case '3':
-      return <LivingRoom />
+      return <LivingRoom step={3} />
+    case '4':
+      return <Entrance2 step={4} />
     default:
       return <p>step not found</p>
   }
