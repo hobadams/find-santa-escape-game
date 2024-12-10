@@ -46,7 +46,7 @@ export const Clue = () => {
     return messages[Math.floor(Math.random() * messages.length)] as Message;
   }
 
-  const messages = getMessageFromStep(currentStep)
+  const messages = getMessageFromStep(currentStep, name as string)
 
   let finalMessages: Message[] = []
 
@@ -81,7 +81,7 @@ export const Clue = () => {
 }
 
 
-const getMessageFromStep = (step: number): Message[] | null => {
+const getMessageFromStep = (step: number, name: string): Message[] | null => {
 
   switch (step) {
     case 1:
@@ -102,6 +102,24 @@ const getMessageFromStep = (step: number): Message[] | null => {
     case 3:
       return [
         {
+          sender: 'Eddy the Elf', text: 'Ewwww, this place is gross!!!', time: formatDate(new Date()), type: 'sender'
+        },
+        {
+          sender: 'Eddy the Elf', text: 'SUCKS to be you!', time: formatDate(new Date()), type: 'sender'
+        },
+        {
+          sender: 'Eddy the Elf', text: 'The contents of those shelves are super odd! Whoever lives here should try a vegan diet!', time: formatDate(new Date()), type: 'sender'
+        },
+        {
+          sender: 'Eddy the Elf', text: `I don't even know what I'm LOOKING at but maybe if you work TOP DOWN it might help?!?`, time: formatDate(new Date()), type: 'sender'
+        },
+        {
+          sender: 'Eddy the Elf', text: `Peace ${name}`, time: formatDate(new Date()), type: 'sender'
+        },
+      ]
+    case 5:
+      return [
+        {
           sender: 'Eddy the Elf', text: 'I guess only nice kids are allowed through this door...if only we could work out which list is which.', time: formatDate(new Date()), type: 'sender'
         },
         {
@@ -111,7 +129,7 @@ const getMessageFromStep = (step: number): Message[] | null => {
           sender: 'Eddy the Elf', text: `It's not like Santa to number his lists, I wonder why he did?`, time: formatDate(new Date()), type: 'sender'
         },
       ]
-    case 4:
+    case 6:
       return [
         {
           sender: 'Eddy the Elf', text: 'Wow that ghost is SCARY 👻 😨', time: formatDate(new Date()), type: 'sender'

@@ -54,7 +54,7 @@ export const LivingRoom = ({ step }: PuzzleProps) => {
         <div className="bg-white p-8 rounded text-center mb-8 text-black w-full">
           <p>You enter the <strong>living room</strong>.</p>
           <p>You notice 2 lists on the floor. They appear to be Santa's nice and naughty lists...but they're smudged. You put them in your bag.</p>
-          <p>You then notice a 4 digit padlock on the door...</p>
+          <p>You then notice ANOTHER 4 digit padlock on the door...</p>
         </div>
 
         <img src="/images/living-room-door.webp" alt="Padlock" className="w-[300px] h-[300px] mx-auto mb-8" />
