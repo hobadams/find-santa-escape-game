@@ -7,6 +7,7 @@ import { Button, buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
+import { Music } from 'lucide-react'
 
 export const Route = createFileRoute('/_index/')({
   component: Index,
@@ -19,7 +20,7 @@ function Index() {
   return (
     <div className="flex items-center justify-center min-h-screen">
       <div className="bg-white p-8 rounded text-center">
-        <h1 className="text-2xl font-bold mb-8">Find Santa!!</h1>
+        <img src="/images/logo.webp" alt="Escape Room" className="w-[300px] h-[300px] mx-auto mb-8 rounded-full" />
 
         <div className="flex flex-col gap-2 min-w-[400px]">
           {!name ? (
@@ -40,6 +41,19 @@ function Index() {
             </Button>
           ) : null}
         </div>
+      </div>
+      <div className="fixed bottom-4 right-4 flex justify-end items-end flex-col gap-4">
+        <a href="https://open.spotify.com/playlist/0X5baMRrz5QDNcC1mWvBNk?si=5130ee72e1d540f5" target='_blank' className={cn(buttonVariants({ size: 'sm' }))}>
+          <Music />
+          <span>Here are some spooooooooky songs</span>
+        </a>
+
+        <a href="https://open.spotify.com/playlist/0X5baMRrz5QDNcC1mWvBNk?si=5130ee72e1d540f5" target='_blank' className={cn(buttonVariants({ variant: 'secondary', size: 'sm' }))}>
+          <Music />
+          <span>Here are some Christmas songs</span>
+        </a>
+
+
       </div>
     </div>
   )

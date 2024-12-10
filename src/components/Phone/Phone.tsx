@@ -20,7 +20,7 @@ export const formatDate = (date: Date) =>
 export const Phone = ({ initialMessages, finalMessages, start, sameDay = true }: PhoneProps) => {
 
   return (
-    <div className="mt-8 mb-4 w-[450px] h-[650px] overflow-hidden max-h-screen rounded-lg p-4 bg-gradient-to-b from-white to-gray-100 shadow-lg">
+    <div className="mt-8 mb-4 w-[400px] h-[550px] overflow-hidden max-h-screen rounded-lg p-4 bg-gradient-to-b from-white to-gray-100 shadow-lg">
 
       <div
         className="relative z-20 max-w-full bg-green-100/50 rounded-lg overflow-auto h-full shadow-inner"
@@ -53,7 +53,7 @@ export const Phone = ({ initialMessages, finalMessages, start, sameDay = true }:
 
 export const MessageComponent = ({ sender, text, time, type }: Message) => (
 
-  <div className={`max-w-[340px] my-2 rounded-lg shadow-md ${type === 'sender' ? 'bg-gray-400 text-black' : 'bg-green-600 text-white ml-auto'}`}>
+  <div className={`max-w-[300px] my-2 rounded-lg shadow-md ${type === 'sender' ? 'bg-gray-400 text-black' : 'bg-green-600 text-white ml-auto'}`}>
     <div className="px-4 py-2">
       <div className="font-bold text-xs">{sender}</div>
 

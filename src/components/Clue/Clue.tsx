@@ -51,7 +51,7 @@ export const Clue = () => {
       <DialogTrigger>
         <img src="/images/eddy.webp" alt="Eddy" className="w-[60px] h-[60px] rounded-full" />
       </DialogTrigger>
-      <DialogContent className="bg-gray-800 border-gray-800">
+      <DialogContent className="bg-gray-800 border-gray-800 flex justify-center">
         <Phone initialMessages={initialMessages} finalMessages={finalMessages} start={getHelp} />
         {!getHelp ? <Button onClick={() => setGetHelp(true)} className="mt-4">Get Help</Button> : null}
       </DialogContent>
