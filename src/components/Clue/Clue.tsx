@@ -79,6 +79,18 @@ const getMessageFromStep = (step: number): Message[] | null => {
           sender: 'Eddy the Elf', text: `I hope that helps ⭐⭐`, time: formatDate(new Date()), type: 'sender'
         },
       ]
+    case 3:
+      return [
+        {
+          sender: 'Eddy the Elf', text: 'I guess only nice kids are allowed through this door...if only we could work out which list is which.', time: formatDate(new Date()), type: 'sender'
+        },
+        {
+          sender: 'Eddy the Elf', text: `One more thought...`, time: formatDate(new Date()), type: 'sender'
+        },
+        {
+          sender: 'Eddy the Elf', text: `It's not like Santa to number his lists, I wonder why he did?`, time: formatDate(new Date()), type: 'sender'
+        },
+      ]
     default:
       return null
   }

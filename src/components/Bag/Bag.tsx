@@ -27,6 +27,20 @@ const getItemDetails = (item: BagItem): ItemDetails | null => {
         image: "/images/map.png",
       }
 
+    case "nice":
+      return {
+        name: "Santa's List",
+        description: "It's smudged so we don't know if you're on the naughty or nice list.",
+        image: "/images/nice-list.png",
+      }
+
+    case "naughty":
+      return {
+        name: "Santa's List",
+        description: "It's smudged so we don't know if you're on the naughty or nice list.",
+        image: "/images/naughty-list.png",
+      }
+
     default:
       return null
   }

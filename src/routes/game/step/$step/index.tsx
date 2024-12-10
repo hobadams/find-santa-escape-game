@@ -1,5 +1,6 @@
 import { Entrance } from '@/components/puzzles/Entrance/Entrance'
 import { House } from '@/components/puzzles/House/House'
+import { LivingRoom } from '@/components/puzzles/LivingRoom/LivingRoom'
 import { setCurrentStep, setStartTime } from '@/state/gameSlice'
 import { RootState } from '@/state/store'
 import { createFileRoute } from '@tanstack/react-router'
@@ -33,6 +34,8 @@ function RouteComponent() {
       return <House />
     case '2':
       return <Entrance />
+    case '3':
+      return <LivingRoom />
     default:
       return <p>step not found</p>
   }

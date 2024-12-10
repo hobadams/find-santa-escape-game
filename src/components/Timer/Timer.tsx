@@ -38,7 +38,7 @@ const Timer = () => {
     return () => clearInterval(interval); // Cleanup on unmount
   }, [dispatch, startTime]);
 
-  if (remainingTime && remainingTime === 0) {
+  if (remainingTime !== null && remainingTime === 0) {
     return (
       <Dialog open>
 
