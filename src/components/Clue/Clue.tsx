@@ -211,6 +211,36 @@ const getMessageFromStep = (step: number, name: string): Message[] | null => {
           sender: 'Eddy the Elf', text: `C'mon ${name}... you gotta get it now....`, time: formatDate(new Date()), type: 'sender'
         },
       ]
+    case 10:
+      return [
+        {
+          sender: 'Eddy the Elf', text: '🤣🤣🤣🤣', time: formatDate(new Date()), type: 'sender'
+        },
+        {
+          sender: 'Eddy the Elf', text: 'Voodoo boo boo...what kind of name is that?!?', time: formatDate(new Date()), type: 'sender'
+        },
+        {
+          sender: 'Eddy the Elf', text: 'They are WAY too cute to be dangerous!', time: formatDate(new Date()), type: 'sender'
+        },
+        {
+          sender: 'Eddy the Elf', text: `Let's humour them anyway...`, time: formatDate(new Date()), type: 'sender'
+        },
+      ]
+    case 11:
+      return [
+        {
+          sender: 'Eddy the Elf', text: `hmmmmm ${name} ${name} ${name}`, time: formatDate(new Date()), type: 'sender'
+        },
+        {
+          sender: 'Eddy the Elf', text: 'That kind of looks like a word search', time: formatDate(new Date()), type: 'sender'
+        },
+        {
+          sender: 'Eddy the Elf', text: 'But what word is Voodoo Boo Boo after?', time: formatDate(new Date()), type: 'sender'
+        },
+        {
+          sender: 'Eddy the Elf', text: `All I know is people use my name when they want me..."Eddy this, Eddy that"`, time: formatDate(new Date()), type: 'sender'
+        },
+      ]
 
     default:
       return null

@@ -66,7 +66,7 @@ const getItemDetails = (item: BagItem): ItemDetails | null => {
       return {
         name: "Cryptic note",
         description: "Who ever dropped this must be off their rocker...why is the R cicled?",
-        image: "/images/code-clue.webp",
+        image: "/images/code-clue.png",
       }
 
     default:

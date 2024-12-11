@@ -1,3 +1,4 @@
+import { Basement } from '@/components/puzzles/Bacement/Bacement'
 import { Bedroom } from '@/components/puzzles/Bedroom/Bedroom'
 import { Entrance } from '@/components/puzzles/Entrance/Entrance'
 import { Entrance2 } from '@/components/puzzles/Entrance2/Entrance2'
@@ -6,6 +7,8 @@ import { KidsRoom } from '@/components/puzzles/KidsRoom/KidsRoom'
 import { Kitchen } from '@/components/puzzles/Kitchen/Kitchen'
 import { LivingRoom } from '@/components/puzzles/LivingRoom/LivingRoom'
 import { Pantry } from '@/components/puzzles/Pantry/Pantry'
+import { SewingRoom } from '@/components/puzzles/SewingRoom/SewingRoom'
+import { SewingRoom2 } from '@/components/puzzles/SewingRoom2/SewingRoom2'
 import { UpstairsHallway } from '@/components/puzzles/UpstairsHallway/UpstairsHallway'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
@@ -62,11 +65,11 @@ function RouteComponent() {
     case '9':
       return <Bedroom step={9} />
     case '10':
-      return <TestRoom step={10} name="cinema room - one percent" />
+      return <SewingRoom step={10} />
     case '11':
-      return <TestRoom step={11} name="sewing room" />
+      return <SewingRoom2 step={11} />
     case '12':
-      return <TestRoom step={12} name="basement" />
+      return <Basement step={12} />
     case '13':
       return <Last step={13} name="End" />
     default:
@@ -74,22 +77,6 @@ function RouteComponent() {
   }
 }
 
-
-const TestRoom = ({ step, name }: { step: number, name: string }) => {
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(setStepCompleted(step))
-  }, [step])
-
-
-  return (
-    <div className="z-10 relative bg-white p-8 mx-auto my-12 w-[500px] flex items-center justify-center flex-col text-black">
-      <h1 className="mb-4">{name}</h1>
-      <Link href={`/game/step/${step + 1}`} className={cn(buttonVariants())}>Next</Link>
-    </div>
-  )
-}
 
 const Last = ({ step, name }: { step: number, name: string }) => {
   const dispatch = useDispatch()
