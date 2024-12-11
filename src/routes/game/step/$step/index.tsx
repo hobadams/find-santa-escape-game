@@ -1,9 +1,11 @@
 import { Entrance } from '@/components/puzzles/Entrance/Entrance'
 import { Entrance2 } from '@/components/puzzles/Entrance2/Entrance2'
 import { House } from '@/components/puzzles/House/House'
+import { KidsRoom } from '@/components/puzzles/KidsRoom/KidsRoom'
 import { Kitchen } from '@/components/puzzles/Kitchen/Kitchen'
 import { LivingRoom } from '@/components/puzzles/LivingRoom/LivingRoom'
 import { Pantry } from '@/components/puzzles/Pantry/Pantry'
+import { UpstairsHallway } from '@/components/puzzles/UpstairsHallway/UpstairsHallway'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { setCompleteTime, setCurrentStep, setStartTime, setStepCompleted } from '@/state/gameSlice'
@@ -53,9 +55,9 @@ function RouteComponent() {
     case '6':
       return <Entrance2 step={6} />
     case '7':
-      return <TestRoom step={7} name="upstairs" />
+      return <UpstairsHallway step={7} />
     case '8':
-      return <TestRoom step={8} name="kids room" />
+      return <KidsRoom step={8} />
     case '9':
       return <TestRoom step={9} name="adult room" />
     case '10':

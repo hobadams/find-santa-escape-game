@@ -41,6 +41,13 @@ const getItemDetails = (item: BagItem): ItemDetails | null => {
         image: "/images/naughty-list.png",
       }
 
+    case "carrot":
+      return {
+        name: "Carrot",
+        description: "It has a huge reindeer sized bite out of it...how strange.",
+        image: "/images/carrot.webp",
+      }
+
     default:
       return null
   }

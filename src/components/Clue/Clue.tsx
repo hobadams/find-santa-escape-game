@@ -160,6 +160,37 @@ const getMessageFromStep = (step: number, name: string): Message[] | null => {
           sender: 'Eddy the Elf', text: `Maybe we can retrace our steps? 👣 Did the ghost say they were the ghost of past steps....sounds like a lame ghost 😝.`, time: formatDate(new Date()), type: 'sender'
         },
       ]
+    case 7:
+      return [
+        {
+          sender: 'Eddy the Elf', text: 'What are you waiting for....the jingling came from the room on the right! It could be Santa', time: formatDate(new Date()), type: 'sender'
+        },
+      ]
+    case 8:
+      return [
+        {
+          sender: 'Eddy the Elf', text: '🎵🎵 hmmm hmmm hmmm 🎵🎵', time: formatDate(new Date()), type: 'sender'
+        },
+        {
+          sender: 'Eddy the Elf', text: `I can’t help you right now, ${name}. I've got a song in my head and I'm feeling festive.`, time: formatDate(new Date()), type: 'sender'
+        },
+        {
+          sender: 'Eddy the Elf', text: '🎵 On the first day of Christmas: a partridge in a pear tree. 🎵', time: formatDate(new Date()), type: 'sender'
+        },
+        {
+          sender: 'Eddy the Elf', text: '🎵 Two turtle doves, three French hens, four calling birds. 🎵', time: formatDate(new Date()), type: 'sender'
+        },
+        {
+          sender: 'Eddy the Elf', text: '🎵 Five golden rings, six geese a-laying, seven swans a-swimming. 🎵', time: formatDate(new Date()), type: 'sender'
+        },
+        {
+          sender: 'Eddy the Elf', text: '🎵 Eight maids a-milking, nine ladies dancing, ten lords a-leaping. 🎵', time: formatDate(new Date()), type: 'sender'
+        },
+        {
+          sender: 'Eddy the Elf', text: '🎵 Eleven pipers piping, twelve drummers drumming, and a partridge in a pear tree! 🎵', time: formatDate(new Date()), type: 'sender'
+        },
+      ];
+
     default:
       return null
   }
