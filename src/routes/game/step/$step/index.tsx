@@ -1,4 +1,5 @@
 import { Basement } from '@/components/puzzles/Bacement/Bacement'
+import { Basement2 } from '@/components/puzzles/Basement2/Basement2'
 import { Bedroom } from '@/components/puzzles/Bedroom/Bedroom'
 import { Entrance } from '@/components/puzzles/Entrance/Entrance'
 import { Entrance2 } from '@/components/puzzles/Entrance2/Entrance2'
@@ -10,12 +11,9 @@ import { Pantry } from '@/components/puzzles/Pantry/Pantry'
 import { SewingRoom } from '@/components/puzzles/SewingRoom/SewingRoom'
 import { SewingRoom2 } from '@/components/puzzles/SewingRoom2/SewingRoom2'
 import { UpstairsHallway } from '@/components/puzzles/UpstairsHallway/UpstairsHallway'
-import { buttonVariants } from '@/components/ui/button'
-import { cn } from '@/lib/utils'
-import { setCompleteTime, setCurrentStep, setStartTime, setStepCompleted } from '@/state/gameSlice'
+import { setCurrentStep, setStartTime } from '@/state/gameSlice'
 import { RootState } from '@/state/store'
-import { createFileRoute, Link } from '@tanstack/react-router'
-import { useEffect } from 'react'
+import { createFileRoute } from '@tanstack/react-router'
 import { useDispatch, useSelector } from 'react-redux'
 
 export const Route = createFileRoute('/game/step/$step/')({
@@ -71,26 +69,8 @@ function RouteComponent() {
     case '12':
       return <Basement step={12} />
     case '13':
-      return <Last step={13} name="End" />
+      return <Basement2 step={13} />
     default:
       return <p>step not found</p>
   }
-}
-
-
-const Last = ({ step, name }: { step: number, name: string }) => {
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(setStepCompleted(step))
-    dispatch(setCompleteTime(new Date().toISOString()))
-  }, [step])
-
-
-  return (
-    <div className="z-10 relative bg-white p-8 mx-auto my-12 w-[500px] flex items-center justify-center flex-col text-black">
-      <h1>{name}</h1>
-      <Link href={`/complete`} className={cn(buttonVariants())}>Complete</Link>
-    </div>
-  )
 }
