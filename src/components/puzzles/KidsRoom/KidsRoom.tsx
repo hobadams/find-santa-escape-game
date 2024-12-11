@@ -9,6 +9,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { DragAndDrop } from "@/components/DragAndDrop/DragAndDrop";
+import { addItem } from "@/state/bagSlice";
 
 
 
@@ -25,6 +26,7 @@ export const KidsRoom = ({ step }: PuzzleProps) => {
     const isCorrectOrder = items.every((item, index) => item === correctOrder[index]);
 
     if (isCorrectOrder) {
+      dispatch(addItem('gnome'));
       dispatch(setStepCompleted(step))
       setCompleted(true);
     } else {
@@ -40,6 +42,7 @@ export const KidsRoom = ({ step }: PuzzleProps) => {
         <DialogContent className="text-center">
           <DialogTitle className="font-bold text-xl">CLICK!</DialogTitle>
           <p>The door in front unlocks</p>
+          <p>You notice a sad looking <strong>gnome</strong> on the floor...why not take a souvenir...you put it in your bag.</p>
           <p>...let's get out of here....this rooms gives me the creeps.</p>
           <Link href={`/game/step/${step + 1}`} className={cn(buttonVariants())}>Go through the door</Link>
         </DialogContent>

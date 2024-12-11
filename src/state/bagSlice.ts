@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-export type BagItem = 'snow-globe' | 'gnome' | 'carrot' | 'map' | 'nice' | 'naughty';
+export type BagItem = 'snow-globe' | 'gnome' | 'carrot' | 'map' | 'nice' | 'naughty' | 'fur' | 'note';
 
 export interface BagState {
   items: BagItem[];

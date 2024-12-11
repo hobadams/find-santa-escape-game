@@ -1,3 +1,4 @@
+import { Bedroom } from '@/components/puzzles/Bedroom/Bedroom'
 import { Entrance } from '@/components/puzzles/Entrance/Entrance'
 import { Entrance2 } from '@/components/puzzles/Entrance2/Entrance2'
 import { House } from '@/components/puzzles/House/House'
@@ -59,7 +60,7 @@ function RouteComponent() {
     case '8':
       return <KidsRoom step={8} />
     case '9':
-      return <TestRoom step={9} name="adult room" />
+      return <Bedroom step={9} />
     case '10':
       return <TestRoom step={10} name="cinema room - one percent" />
     case '11':

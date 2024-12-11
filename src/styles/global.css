@@ -92,4 +92,7 @@
   .contain-layout {
     contain: layout;
   }
+  p {
+    @apply mb-2;
+  }
 }

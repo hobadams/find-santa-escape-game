@@ -190,6 +190,27 @@ const getMessageFromStep = (step: number, name: string): Message[] | null => {
           sender: 'Eddy the Elf', text: '🎵 Eleven pipers piping, twelve drummers drumming, and a partridge in a pear tree! 🎵', time: formatDate(new Date()), type: 'sender'
         },
       ];
+    case 9:
+      return [
+        {
+          sender: 'Eddy the Elf', text: 'Damn, I hate this show....my husband always shouts the answers out before I can think.', time: formatDate(new Date()), type: 'sender'
+        },
+        {
+          sender: 'Eddy the Elf', text: 'I saw this one last week though...so you are in luck!!', time: formatDate(new Date()), type: 'sender'
+        },
+        {
+          sender: 'Eddy the Elf', text: `I'll give you some clues...`, time: formatDate(new Date()), type: 'sender'
+        },
+        {
+          sender: 'Eddy the Elf', text: `Where do babies go if they're born a little too early?`, time: formatDate(new Date()), type: 'sender'
+        },
+        {
+          sender: 'Eddy the Elf', text: `What's it called when a hen sits on an egg...`, time: formatDate(new Date()), type: 'sender'
+        },
+        {
+          sender: 'Eddy the Elf', text: `C'mon ${name}... you gotta get it now....`, time: formatDate(new Date()), type: 'sender'
+        },
+      ]
 
     default:
       return null

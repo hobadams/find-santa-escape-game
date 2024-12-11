@@ -48,6 +48,27 @@ const getItemDetails = (item: BagItem): ItemDetails | null => {
         image: "/images/carrot.webp",
       }
 
+    case "gnome":
+      return {
+        name: "Sad Gnome",
+        description: "This gnome looks like it's nose has been painted red...maybe that's why it's so sad.",
+        image: "/images/gnome.webp",
+      }
+
+    case "fur":
+      return {
+        name: "A tuft of fur",
+        description: "This tuft of fur seems out of place and smells a lot like mince pies. How strange.",
+        image: "/images/fur.webp",
+      }
+
+    case "note":
+      return {
+        name: "Cryptic note",
+        description: "Who ever dropped this must be off their rocker...why is the R cicled?",
+        image: "/images/code-clue.webp",
+      }
+
     default:
       return null
   }
@@ -56,6 +77,8 @@ const getItemDetails = (item: BagItem): ItemDetails | null => {
 export function Bag() {
   const { items } = useSelector((state: RootState) => state.bag)
   const { open, setOpen } = useSidebar();
+
+  const emptySlots = 8 - items.length;
 
   return (
 
@@ -83,9 +106,9 @@ export function Bag() {
               )
             }
             )}
-            <div className="border border-dashed border-sidebar-background/90 h-[100px] w-[100px] rounded-full border-2"></div>
-            <div className="border border-dashed border-sidebar-background/90 h-[100px] w-[100px] rounded-full border-2"></div>
-            <div className="border border-dashed border-sidebar-background/90 h-[100px] w-[100px] rounded-full border-2"></div>
+            {[...Array(emptySlots)].map((_, index) => (
+              <div key={index} className="border border-dashed border-sidebar-background/90 h-[100px] w-[100px] rounded-full border-2"></div>
+            ))}
           </div>
         </SidebarContent>
         <SidebarFooter />
