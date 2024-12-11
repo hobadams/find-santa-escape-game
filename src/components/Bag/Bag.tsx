@@ -69,7 +69,7 @@ export function Bag() {
                     <DialogContent className="text-center">
                       <DialogTitle>{itemDetails.name}</DialogTitle>
                       <DialogDescription>{itemDetails.description}</DialogDescription>
-                      <img src={itemDetails.image} alt={itemDetails.name} className="rounded-lg w-[550px] h-[550px] mx-auto" />
+                      <img src={itemDetails.image} alt={itemDetails.name} className="rounded-lg mx-auto" />
                     </DialogContent>
                   </Dialog>
                 </div>

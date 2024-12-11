@@ -121,6 +121,21 @@ const getMessageFromStep = (step: number, name: string): Message[] | null => {
           sender: 'Eddy the Elf', text: `Peace ${name}`, time: formatDate(new Date()), type: 'sender'
         },
       ]
+    case 4:
+      return [
+        {
+          sender: 'Eddy the Elf', text: `Seriously ${name}...you're cleaning right now!`, time: formatDate(new Date()), type: 'sender'
+        },
+        {
+          sender: 'Eddy the Elf', text: `....looks like I can't change your mind. Your Grandma 👵 taught you well.`, time: formatDate(new Date()), type: 'sender'
+        },
+        {
+          sender: 'Eddy the Elf', text: `If only you had something else that reminded you of her... 🤔🤔`, time: formatDate(new Date()), type: 'sender'
+        },
+        {
+          sender: 'Eddy the Elf', text: `That might jog your memory`, time: formatDate(new Date()), type: 'sender'
+        },
+      ]
     case 5:
       return [
         {

@@ -1,14 +1,15 @@
 import { Entrance } from '@/components/puzzles/Entrance/Entrance'
 import { Entrance2 } from '@/components/puzzles/Entrance2/Entrance2'
 import { House } from '@/components/puzzles/House/House'
+import { Kitchen } from '@/components/puzzles/Kitchen/Kitchen'
 import { LivingRoom } from '@/components/puzzles/LivingRoom/LivingRoom'
 import { Pantry } from '@/components/puzzles/Pantry/Pantry'
-import { Button, buttonVariants } from '@/components/ui/button'
+import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { setCompleteTime, setCurrentStep, setStartTime, setStepCompleted } from '@/state/gameSlice'
 import { RootState } from '@/state/store'
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { use, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 export const Route = createFileRoute('/game/step/$step/')({
@@ -35,7 +36,7 @@ function RouteComponent() {
   dispatch(setCurrentStep(Number(step)))
 
   if (step === '1' && !startTime) {
-    dispatch(setStartTime(new Date()))
+    dispatch(setStartTime(new Date().toISOString()))
   }
 
   switch (step) {
@@ -46,7 +47,7 @@ function RouteComponent() {
     case '3':
       return <Pantry step={3} />
     case '4':
-      return <TestRoom step={4} name="kitchen" />
+      return <Kitchen step={4} />
     case '5':
       return <LivingRoom step={5} />
     case '6':
